@@ -3,6 +3,7 @@ package br.com.uaijug.leonidas.model.domain;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,6 +36,8 @@ public class Session extends AbstractEntity {
 
 	@NotNull
 	private String name;
+	
+	private String description;
 
 	@ManyToOne
 	@JoinColumn(name = "event_id")
@@ -48,17 +51,17 @@ public class Session extends AbstractEntity {
 
 	@NotNull
 	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "start_date")
 	private Date startDate;
 
 	@NotNull
 	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "end_date")
 	private Date endDate;
 
 	@ManyToOne
 	@JoinColumn(name = "room_id")
 	private Room room;
-
-	private String description;
 
 	public Long getId() {
 		return id;

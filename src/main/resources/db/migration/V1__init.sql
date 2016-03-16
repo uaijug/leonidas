@@ -76,23 +76,14 @@ create table room (
 	primary key (id)
 );
 
-create table zone (
+create table session (
 	id bigint(19) NOT NULL AUTO_INCREMENT,
 	name varchar(255), 
-	sector_id bigint(19) NOT NULL,
-	number int,
-	create_by varchar(255) NOT NULL,
-	created_date timestamp(23) NOT NULL,
-	last_modified_by varchar(255),
-	last_modified_date timestamp(23),
-	primary key (id)
-);
-
-create table neighbourhood (
-	id bigint(19) NOT NULL AUTO_INCREMENT,
-	name varchar(255), 
-	zone_id bigint(19) NOT NULL,
-	number int,
+	description varchar(255), 
+	event_id bigint(19) NOT NULL,
+	room_id bigint(19) NOT NULL,
+	start_date timestamp(23) NOT NULL,
+	end_date timestamp(23) NOT NULL,
 	create_by varchar(255) NOT NULL,
 	created_date timestamp(23) NOT NULL,
 	last_modified_by varchar(255),
@@ -103,8 +94,10 @@ create table neighbourhood (
 create table block (
 	id bigint(19) NOT NULL AUTO_INCREMENT,
 	name varchar(255), 
-	neighbourhood_id bigint(19) NOT NULL,
-	number int,
+	email varchar(255),
+	twitter varchar(255),
+	linkedin varchar(255),
+	curriculum varchar(255),
 	create_by varchar(255) NOT NULL,
 	created_date timestamp(23) NOT NULL,
 	last_modified_by varchar(255),
@@ -112,77 +105,10 @@ create table block (
 	primary key (id)
 );
  
-CREATE TABLE address (
-  id bigint(19) NOT NULL AUTO_INCREMENT,
-  block_id bigint(19) NOT NULL,
-  street VARCHAR(225) NOT NULL,
-  longitude double,
-  latitude double,
-  create_by varchar(255) NOT NULL,
-  created_date timestamp(23) NOT NULL,
-  last_modified_by varchar(255),
-  last_modified_date timestamp(23),
-  PRIMARY KEY (id)
- );
-
-CREATE TABLE property (
-  id bigint(19) NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL,
-  address_id bigint(19) NOT NULL,
-  address_number INT NOT NULL,
-  property_category VARCHAR(255) NULL,
-  regional_coordination VARCHAR(255) NULL,
-  health_district boolean NOT NULL,
-  types_buildings VARCHAR(45) NOT NULL,
-  logitude DOUBLE NULL,
-  latitude DOUBLE NULL,
-  has_focus boolean,
-  create_by varchar(255) NOT NULL,
-  created_date timestamp(23) NOT NULL,
-  last_modified_by varchar(255),
-  last_modified_date timestamp(23),
-  PRIMARY KEY (id)
- );
- 
- CREATE TABLE employee (
-  id bigint(19) NOT NULL AUTO_INCREMENT,
-  name VARCHAR(225) NOT NULL,
-  create_by varchar(255) NOT NULL,
-  created_date timestamp(23) NOT NULL,
-  last_modified_by varchar(255),
-  last_modified_date timestamp(23),
-  PRIMARY KEY (id)
- );
-  
-CREATE TABLE daily_work_schedule (
-  id bigint(19) NOT NULL AUTO_INCREMENT,
-  employee_id bigint(19) NOT NULL,
-  address_id bigint(19) NOT NULL,
-  goal VARCHAR(255) NOT NULL,
-  description VARCHAR(255) NULL,
-  route_map VARCHAR(500) NULL,
-  create_by varchar(255) NOT NULL,
-  created_date timestamp(23) NOT NULL,
-  last_modified_by varchar(255),
-  last_modified_date timestamp(23),
-  PRIMARY KEY (id)
- );
- 
- CREATE TABLE working (
-  id bigint(19) NOT NULL AUTO_INCREMENT,
-  daily_work_schedule_id bigint(19) NOT NULL,
-  employee_id bigint(19) NOT NULL,
-  property_id bigint(19) NOT NULL,
-  has_focus boolean NOT NULL,
-  activity_type integer NULL,
-  work_performed boolean NULL,
-  create_by varchar(255) NOT NULL,
-  created_date timestamp(23) NOT NULL,
-  last_modified_by varchar(255),
-  last_modified_date timestamp(23),
-  PRIMARY KEY (id)
- );
-
+create table session_speaker (
+	session_id bigint(19) NOT NULL,
+	speaker_id bigint(19) NOT NULL,	
+);
  
 insert into user (id, username, password, email) values (1, 'root', 'root', 'root@localhost');
 insert into user_role (id, role_name, user_id) values (1, 'ADMIN', 1);
