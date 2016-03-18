@@ -3,11 +3,13 @@ package br.com.uaijug.leonidas.model.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.uaijug.leonidas.model.domain.Session;
 import br.com.uaijug.leonidas.model.repositories.SessionRepository;
 import br.com.uaijug.leonidas.model.service.SessionService;
 
+@Service
 public class SessionServiceImpl implements SessionService {
 	
 	@Autowired

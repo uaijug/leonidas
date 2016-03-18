@@ -15,54 +15,54 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.uaijug.leonidas.model.domain.Institution;
-import br.com.uaijug.leonidas.model.service.InstitutionService;
-import br.com.uaijug.leonidas.web.exception.InstituitionNotFoundException;
+import br.com.uaijug.leonidas.model.domain.Session;
+import br.com.uaijug.leonidas.model.service.SessionService;
+import br.com.uaijug.leonidas.web.exception.SessionNotFoundException;
 
 @RestController
-@RequestMapping("/api/instituitions")
-public class InstituitionController extends AbstractRestController {
+@RequestMapping("/api/sessions")
+public class SessionController extends AbstractRestController {
 	
 	@Autowired
-    private InstitutionService instituitionService;
-    
-    @RequestMapping(method = RequestMethod.GET)
+    private SessionService sessionService;
+	
+	@RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<Institution> list() {
-        return instituitionService.list();
+    public List<Session> list() {
+        return sessionService.list();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public Institution findById(@PathVariable Long id) throws InstituitionNotFoundException {
-    	Institution dailyWorkSchedule = null;
+    public Session findById(@PathVariable Long id) throws SessionNotFoundException {
+    	Session session = null;
         try {
-        	dailyWorkSchedule = instituitionService.findById(id);
+        	session = sessionService.findById(id);
         } catch (Exception e) {
-            throw new InstituitionNotFoundException("Instituitiono não Existe", e);
+            throw new SessionNotFoundException("Sessiono não Existe", e);
         }
 
-        return dailyWorkSchedule;
+        return session;
     }
     
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public Institution create(@RequestBody @Valid Institution dailyWorkSchedule) {
-        instituitionService.save(dailyWorkSchedule);
+    public Session create(@RequestBody @Valid Session dailyWorkSchedule) {
+        sessionService.save(dailyWorkSchedule);
         return dailyWorkSchedule;
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Institution update(@PathVariable Long id, @RequestBody @Valid Institution dailyWorkSchedule) throws InstituitionNotFoundException {
-    	Institution result = null;
+    public Session update(@PathVariable Long id, @RequestBody @Valid Session session) throws SessionNotFoundException {
+    	Session result = null;
         try {
-            result = instituitionService.update(id, dailyWorkSchedule);
+            result = sessionService.update(id, session);
         } catch (Exception e) {
-            throw new InstituitionNotFoundException("Instituitiono não Existe", e);
+            throw new SessionNotFoundException("Sessiono não Existe", e);
         }
         return result;
     }
@@ -70,11 +70,11 @@ public class InstituitionController extends AbstractRestController {
     
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void delete(@PathVariable Long id) throws InstituitionNotFoundException {
+    public void delete(@PathVariable Long id) throws SessionNotFoundException {
         try {
-            instituitionService.delete(id);
+            sessionService.delete(id);
         } catch (Exception e) {
-			throw new InstituitionNotFoundException("Instituitiono não Existe", e);
+			throw new SessionNotFoundException("Sessiono não Existe", e);
         }
     }
 }

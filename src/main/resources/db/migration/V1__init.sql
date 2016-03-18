@@ -91,9 +91,9 @@ create table session (
 	primary key (id)
 );
 
-create table block (
+create table speaker (
 	id bigint(19) NOT NULL AUTO_INCREMENT,
-	name varchar(255), 
+	name varchar(255),
 	email varchar(255),
 	twitter varchar(255),
 	linkedin varchar(255),

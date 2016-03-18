@@ -61,8 +61,7 @@ public class SpeakerServiceImpl implements SpeakerService {
 
 	@Override
 	public List<Speaker> list() {
-		// TODO Auto-generated method stub
-		return null;
+		return speakerRepository.findAll();
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import br.com.uaijug.leonidas.model.domain.UserRole;
 @Qualifier(value = "userRoleRepository")
 public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
 
-    @Query("SELECT ur FROM br.com.geden.gedencore.model.domain.UserRole ur WHERE ur.id = :id")
+    @Query("SELECT ur FROM br.com.uaijug.leonidas.model.domain.UserRole ur WHERE ur.id = :id")
     Set<UserRole> findRoleNameByUserId(@Param("id") Long id);
 
     // @Query( "select o from MyObject o where inventoryId in :ids" )
